@@ -1,0 +1,12 @@
+.track-head {
+  text-align: center; }
+
+.track-list {
+  height: 700px;
+  overflow-y: scroll; }
+  .track-list::-webkit-scrollbar {
+    width: 1.5rem;
+    background-color: #fff; }
+  .track-list::-webkit-scrollbar-thumb {
+    width: 1.5rem;
+    background-color: #343434; }

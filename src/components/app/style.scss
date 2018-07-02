@@ -1,0 +1,21 @@
+@import '../../styles/colors';
+@import '../../styles/base';
+
+.app {
+  width: 100%;
+  height: 100vh;
+  background: -webkit-gradient(linear, right top, left bottom, from($bg-color-top), to($bg-color-bottom));
+  background: -webkit-linear-gradient(right top, $bg-color-top, $bg-color-bottom);
+  background: -o-linear-gradient(right top, $bg-color-top, $bg-color-bottom);
+  background: linear-gradient(to left bottom, $bg-color-top, $bg-color-bottom);
+  color: $text-color;
+}
+
+.loader {
+  width: 30rem;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,9 @@
+@import '../../styles/colors';
+
+.control-button {
+  display: inline-block;
+  border: 2px solid $text-color;
+  border-radius: 50%;
+  padding: .2rem;
+  text-align: center;
+}
