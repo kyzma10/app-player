@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import App from '../../components/app';
 
 import axios from 'axios';
-import Url from '../../const/urls';
+import Url from '../../utils/urls';
 
 
 class AppContainer extends Component {

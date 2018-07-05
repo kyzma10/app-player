@@ -53,11 +53,13 @@ class TracksContainer extends Component {
                         currentTime: currentTime,
                         duration: duration
                     });
-                    if(currentTime === duration || !this.state.on) {
+                    if(currentTime === duration || this.state.on === false) {
                         clearInterval(interval);
-                        this.setState({
-                            on: false
-                        });
+                        if(currentTime === duration) {
+                            this.setState({
+                                on: false
+                            });
+                        }
                     }
                 }, 500)
         }, 1500);

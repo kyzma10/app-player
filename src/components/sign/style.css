@@ -1,0 +1,66 @@
+.green {
+  background-color: green; }
+
+.sign-bg {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(to left bottom, rgba(110, 74, 84, 0.4), rgba(43, 40, 45, 0.4)); }
+
+.sign-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 70%;
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #211F2E;
+  color: #fff; }
+
+.sign-img {
+  clip-path: polygon(0 0, 65% 0, 98% 48%, 98% 52%, 45% 100%, 0 100%); }
+  .sign-img img {
+    width: 100%;
+    height: 100%; }
+
+.sign-form {
+  position: relative;
+  width: 100%; }
+  .sign-form__items {
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+
+.form-control {
+  width: 100%;
+  margin: 1rem 0;
+  position: relative; }
+  .form-control input {
+    display: block;
+    width: 100%;
+    background: none;
+    border: 1px solid #e6e8ed;
+    color: #fff;
+    border-radius: 10px;
+    padding: .5rem 0;
+    outline: none; }
+    .form-control input:hover {
+      cursor: pointer; }
+  .form-control svg {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: .5rem; }
+
+.btn-sign {
+  display: block;
+  width: 100%;
+  background-color: #0371B8;
+  color: #fff;
+  border-radius: 10px;
+  padding: .5rem 0;
+  margin-top: 2rem; }
