@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import App from '../../components/app';
+import {connect} from 'react-redux';
+import {getPlayList} from '../../action'
 
 import axios from 'axios';
 import Url from '../../utils/urls';
@@ -23,28 +25,30 @@ class AppContainer extends Component {
     }
 
     componentDidMount() {
-        axios({
-            method: 'get',
-            url: Url
-        })
-            .then(response => this.setState({
-                tracks: response.data.data,
-                activeTrack: [response.data.data[0]]
-            }))
-            .catch(error => console.log(error));
+        this.props.getPlayList();
+        // axios({
+        //     method: 'get',
+        //     url: Url
+        // })
+        //     .then(response => this.setState({
+        //         tracks: response.data.data,
+        //         activeTrack: [response.data.data[0]]
+        //     }))
+        //     .catch(error => console.log(error));
     }
 
     render() {
+        console.log(this.props);
     return (
-        <App
-            tracks={this.state.tracks}
-            activeTrack={this.state.activeTrack}
-            playSelectTrack={this.playSelectTrack}
-            prevTrack={this.prevTrack}
-            nextTrack={this.nextTrack}
-            loopTrack={this.loopTrack}
-            shuffleTracks={this.shuffleTracks}
-        />
+            <App
+                tracks={this.state.tracks}
+                activeTrack={this.state.activeTrack}
+                playSelectTrack={this.playSelectTrack}
+                prevTrack={this.prevTrack}
+                nextTrack={this.nextTrack}
+                loopTrack={this.loopTrack}
+                shuffleTracks={this.shuffleTracks}
+            />
     );
   }
 
@@ -104,4 +108,14 @@ class AppContainer extends Component {
     }
 }
 
-export default AppContainer;
+const mapStateToProps = store => {
+    const {isLoading, trackList, error} = store;
+
+    return {
+        isLoading,
+        trackList,
+        error};
+};
+
+
+export default connect(mapStateToProps, {getPlayList})(AppContainer);
