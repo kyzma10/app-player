@@ -1,29 +1,26 @@
 import React, {Component} from 'react';
 import Sign from '../../components/Sign';
+import {connect} from 'react-redux';
+import {auth} from "../../actions/authAction";
 
 class SignContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: 'test@com.ua',
-            password: 12345678
-        }
-    }
 
     render() {
         return (
             <Sign
-                email={this.state.email}
-                password={this.state.password}
-                handleSubmit={this.handleSubmit}
+                onSubmit={this.handleSubmit}
             />
         );
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('submit');
+    handleSubmit = (val) => {
+        console.log('submit', val);
+        this.props.auth(val);
     }
 }
 
-export default SignContainer;
+const mapDispatchToProps = dispatch => ({
+    auth: () => dispatch(auth())
+});
+
+export default connect(null, mapDispatchToProps)(SignContainer);

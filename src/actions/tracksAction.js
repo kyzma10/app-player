@@ -7,7 +7,7 @@ import {
     TRACK_NEXT,
     TRACK_CURRENT, FIND_TRACK_SUCCESS, FIND_TRACK_FAILURE
 } from '../types/tracksTypes';
-import Url from "../utils/urls";
+import {Urls} from "../utils/urls";
 import axios from "axios/index";
 
 
@@ -15,7 +15,7 @@ const getPlayList = () => dispatch => {
     dispatch({type: FETCH_SONG_REQUEST});
     axios({
         method: 'get',
-        url: `${Url}eminem`
+        url: `${Urls}eminem`
     })
         .then(response => dispatch({
             type: FETCH_SONG_SUCCESS,
@@ -57,7 +57,7 @@ const currentTrack = (id) => dispatch => {
 const findTracks = (val) => dispatch => {
     axios({
         method: 'get',
-        url: `${Url}${val}`
+        url: `${Urls}${val}`
     })
         .then(response => dispatch({
             type: FIND_TRACK_SUCCESS,

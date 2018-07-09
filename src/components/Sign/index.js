@@ -1,11 +1,15 @@
 import React from 'react';
 import TiMail from 'react-icons/lib/ti/mail';
 import TiLock from 'react-icons/lib/ti/lock-closed-outline';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import girlBg from '../../assets/img/girl-bg.jpg';
+import {Field, reduxForm} from 'redux-form';
+import CustomField from '../CustomField';
 import './style.css';
+import {required} from "../../utils/validate";
 
-const Sign = ({email, password, handleSubmit}) => {
+let Sign = ({ handleSubmit }) => {
+    console.log(this.props);
     return (
         <div className="sign-bg">
             <div className="sign-content">
@@ -13,13 +17,18 @@ const Sign = ({email, password, handleSubmit}) => {
                     <img src={girlBg} alt="img"/>
                 </div>
                 <div className="sign-form">
-                    <form className="sign-form__items" onSubmit={(e) => handleSubmit(e)}>
+                    <form className="sign-form__items" onSubmit={handleSubmit}>
                         <div className="form-control">
-                            <input type="email" className="form-control" defaultValue={email}/>
+                            <Field
+                                name="email"
+                                component={CustomField}
+                                type="email"
+                                validate={required}
+                            />
                             <TiMail />
                         </div>
                         <div className="form-control">
-                            <input type="password" className="form-control" defaultValue={password}/>
+                            <Field name="password" component="input" type="password"/>
                             <TiLock />
                         </div>
                         <button type="submit" className="btn-sign">Sign In</button>
@@ -30,17 +39,27 @@ const Sign = ({email, password, handleSubmit}) => {
     );
 };
 
-Sign.displayName = 'Sign';
-
-Sign.propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.number.isRequired,
-    handleSubmit: PropTypes.func
+// Sign.displayName = 'Sign';
+//
+// Sign.propTypes = {
+//     email: PropTypes.string.isRequired,
+//     password: PropTypes.number.isRequired,
+//     handleSubmit: PropTypes.func
+// };
+//
+// Sign.defaultProps = {
+//     email: '',
+//     password: null
+// };
+const validate = values => {
+    const errors = {};
+    if(!values.email) {
+        errors.email= 'Required';
+    }
+    return errors;
 };
 
-Sign.defaultProps = {
-    email: '',
-    password: null
-};
-
+Sign = reduxForm({
+    form: 'sign'
+})(Sign);
 export default Sign;
