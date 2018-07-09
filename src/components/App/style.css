@@ -7,7 +7,7 @@ button {
 
 .app {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(to left bottom, #6e4a54, #2b282d);
   color: #fff; }
 
