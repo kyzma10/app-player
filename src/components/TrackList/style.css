@@ -1,0 +1,21 @@
+.track-head {
+  text-align: center; }
+  .track-head h2 {
+    margin-top: 3rem; }
+
+.track-button-control {
+  position: fixed;
+  right: 1rem;
+  top: 1rem; }
+  .track-button-control svg:hover {
+    cursor: pointer; }
+
+.track-list {
+  height: 700px;
+  overflow-y: scroll; }
+  .track-list::-webkit-scrollbar {
+    width: 1.5rem;
+    background-color: #fff; }
+  .track-list::-webkit-scrollbar-thumb {
+    width: 1.5rem;
+    background-color: #343434; }

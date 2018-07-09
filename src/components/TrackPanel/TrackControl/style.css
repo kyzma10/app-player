@@ -1,0 +1,9 @@
+.control {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: absolute;
+  bottom: 0; }
+  .control__item {
+    align-self: center;
+    justify-self: center; }

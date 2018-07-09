@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './index.css';
-import AppContainer from './containers/app-container';
-import SignContainer from './containers/sign-container';
-import ErrorBoundary from './containers/error-boundary';
+import AppContainer from './containers/AppContainer';
+import SignContainer from './containers/SignContainer';
+import ErrorBoundary from './containers/ErrorBoundary';
 import routes from './utils/routes';
 import registerServiceWorker from './registerServiceWorker';
 import reduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux'
-import rootReducer from './reducers';
+import reducers from './reducers';
 import {Provider} from 'react-redux';
 
-const store = createStore(rootReducer, compose(
+const store = createStore(reducers, compose(
     applyMiddleware(reduxThunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f,
 ));

@@ -1,0 +1,32 @@
+@import '../../../styles/colors';
+
+.track-progress {
+  width: 100%;
+  position: absolute;
+  bottom: 20%;
+}
+
+progress {
+  display: block;
+  width: 100%;
+  height: 1rem;
+  background-color: $text-color;
+  border-radius: 5px;
+
+  &::-moz-progress-bar {
+    background: repeating-linear-gradient( 45deg, $color-progress, $color-progress .5em,
+            transparent .5em, transparent 1em);
+    background-color: $color-progress-bg;
+  }
+
+  &::-webkit-progress-bar {
+    background: $text-color;
+
+  }
+
+  &::-webkit-progress-value {
+    background: repeating-linear-gradient( 45deg, $color-progress, $color-progress .5em,
+            transparent .5em, transparent 1em);
+    background-color: $color-progress-bg;
+  }
+}
