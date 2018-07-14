@@ -1,0 +1,11 @@
+.search-list {
+  width: 50%;
+  min-height: 390px;
+  max-height: 400px;
+  overflow-y: scroll; }
+  .search-list::-webkit-scrollbar {
+    width: 1.5rem;
+    background-color: #f48042; }
+  .search-list::-webkit-scrollbar-thumb {
+    width: 1.5rem;
+    background-color: #343434; }

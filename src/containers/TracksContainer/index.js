@@ -6,7 +6,9 @@ import {
     prevTrack,
     nextTrack,
     currentTrack,
-    findTracks} from '../../actions/tracksAction';
+    findTracks,
+    deleteTrack,
+    clearSearchList } from '../../actions/tracksAction';
 import PropTypes from 'prop-types';
 
 class TracksContainer extends Component {
@@ -18,26 +20,17 @@ class TracksContainer extends Component {
             elem: '',
             isActive: false,
             currentTime: 0,
-            duration: 100
-        }
+            duration: 100,
+            endOfSong: false
+        };
     }
 
     componentDidMount() {
         const el = document.getElementById('player');
         this.setState({
             elem: el
-        });
+        })
     }
-
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.status !== nextProps.status) {
-            this.setState({
-                state: nextProps.status
-            });
-        }
-    }
-
 
     render() {
         return (
@@ -55,8 +48,8 @@ class TracksContainer extends Component {
                 isActive={this.state.isActive}
                 isOpen={this.state.isOpen}
                 togglePopup={this.togglePopup}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
+                deleteTrack={this.props.deleteTrack}
+                endOfSong={this.state.endOfSong}
             />
         );
     }
@@ -66,7 +59,8 @@ class TracksContainer extends Component {
         setTimeout(() => {
             elem.play();
             this.setState({
-                isActive: true
+                isActive: true,
+                endOfSong: false
             });
             let interval = setInterval(
                 () => {
@@ -80,7 +74,8 @@ class TracksContainer extends Component {
                         clearInterval(interval);
                         if(currentTime === duration) {
                             this.setState({
-                                isActive: false
+                                isActive: false,
+                                endOfSong: true
                             });
                         }
                     }
@@ -98,22 +93,12 @@ class TracksContainer extends Component {
     togglePopup = () => {
         this.setState((prevState) => {
             return {isOpen: !prevState.isOpen}
-        })
-    };
+        });
 
-    handleChange = (e) => {
-        e.preventDefault();
-        this.setState({findAuthor: e.target.value});
+        if(this.state.isOpen === false) {
+            this.props.clearSearch()
+        }
     };
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.findTracks(this.state.findAuthor);
-        this.setState({
-            findAuthor: '',
-            isOpen: false
-        })
-    }
 
 }
 
@@ -127,12 +112,18 @@ TracksContainer.propTypes = {
     findTracks: PropTypes.func,
 };
 
+const mapStateToProps = state => ({
+    isLoop: state.tracks.isLoop
+});
+
 const mapDispatchToProps = dispatch => ({
     prevTrack: (id) => dispatch(prevTrack(id)),
     nextTrack: (id) => dispatch(nextTrack(id)),
     shuffleTracks: () => dispatch(shuffleTracks()),
     currentTrack: (id) => dispatch(currentTrack(id)),
-    findTracks: (val) => dispatch(findTracks(val))
+    findTracks: (val) => dispatch(findTracks(val)),
+    deleteTrack: (id) => dispatch(deleteTrack(id)),
+    clearSearch: () => dispatch(clearSearchList())
 });
 
-export default connect(null, mapDispatchToProps)(TracksContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TracksContainer);

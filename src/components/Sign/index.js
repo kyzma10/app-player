@@ -1,15 +1,13 @@
 import React from 'react';
 import TiMail from 'react-icons/lib/ti/mail';
 import TiLock from 'react-icons/lib/ti/lock-closed-outline';
-// import PropTypes from 'prop-types';
 import girlBg from '../../assets/img/girl-bg.jpg';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, reset} from 'redux-form';
 import CustomField from '../CustomField';
 import './style.css';
-import {required} from "../../utils/validate";
+import {checkEmail, checkPassword} from '../../utils/validate';
 
 let Sign = ({ handleSubmit }) => {
-    console.log(this.props);
     return (
         <div className="sign-bg">
             <div className="sign-content">
@@ -23,12 +21,19 @@ let Sign = ({ handleSubmit }) => {
                                 name="email"
                                 component={CustomField}
                                 type="email"
-                                validate={required}
+                                placeholder="Enter your e-mail"
+                                validate={checkEmail}
                             />
                             <TiMail />
                         </div>
                         <div className="form-control">
-                            <Field name="password" component="input" type="password"/>
+                            <Field
+                                name="password"
+                                component={CustomField}
+                                type="password"
+                                placeholder="Enter your password"
+                                validate={checkPassword}
+                            />
                             <TiLock />
                         </div>
                         <button type="submit" className="btn-sign">Sign In</button>
@@ -36,7 +41,7 @@ let Sign = ({ handleSubmit }) => {
                 </div>
             </div>
         </div>
-    );
+    )
 };
 
 // Sign.displayName = 'Sign';
@@ -51,15 +56,18 @@ let Sign = ({ handleSubmit }) => {
 //     email: '',
 //     password: null
 // };
-const validate = values => {
-    const errors = {};
-    if(!values.email) {
-        errors.email= 'Required';
-    }
-    return errors;
-};
+// const validate = values => {
+//     const errors = {};
+//     if(!values.email) {
+//         errors.email= 'Required';
+//     }
+//     return errors;
+// };
+
+const afterSubmit = (result, dispatch) => dispatch(reset('sign'));
 
 Sign = reduxForm({
-    form: 'sign'
+    form: 'sign',
+    onSubmitSuccess: afterSubmit
 })(Sign);
 export default Sign;

@@ -10,8 +10,19 @@ class TrackItemContainer extends Component {
                 idx={this.props.idx}
                 track={this.props.track}
                 playTrack={this.props.playTrack}
+                deleteTrack={this.props.deleteTrack}
+                activeTrack={this.props.activeTrack}
+                checkOfItem={this.checkOfItem}
             />
         );
+    }
+
+    checkOfItem = (id1, id2) => {
+
+        if(id1 === id2)
+            return true;
+
+        return false;
     }
 }
 

@@ -20,8 +20,8 @@ const TrackControl = ({
                           nextTrack,
                           shuffleTracks,
                           pauseTrack,
-                          isActive
-                      }) => {
+                          isActive,
+                          endOfSong }) => {
 
     const id = activeTrack[0] ? activeTrack[0].id : null;
 
@@ -49,10 +49,10 @@ const TrackControl = ({
                 </div>
                 <div className="control__item">
                     <TracksLoopContainer
-                        id={id}
-                        elem={elem}
-                        playTrack={playTrack}
+                        activeTrack={activeTrack}
                         nextTrack={nextTrack}
+                        playTrack={playTrack}
+                        endOfSong={endOfSong}
                     />
                 </div>
             </div>

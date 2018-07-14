@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import App from '../../components/App';
 import {connect} from 'react-redux';
 import {getPlayList} from '../../actions/tracksAction';
+import ErrorBoundary from '../../containers/ErrorBoundary';
 
 class AppContainer extends Component {
 
@@ -10,11 +11,15 @@ class AppContainer extends Component {
     }
 
     render() {
+        const {trackList, activeTrack, isLoading} = this.props;
     return (
+        <ErrorBoundary>
             <App
-                tracks={this.props.trackList}
-                activeTrack={this.props.activeTrack}
+                tracks={trackList}
+                activeTrack={activeTrack}
+                isLoading={isLoading}
             />
+        </ErrorBoundary>
     )
   }
 }

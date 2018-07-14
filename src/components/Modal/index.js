@@ -1,12 +1,13 @@
 import React from 'react';
+import SearchFormContainer from '../../containers/SearchFormContainer';
+import SearchListContainer from '../../containers/SearchListContainer';
 import './style.css';
 
-const Modal = ({handleChange, handleSubmit}) => {
+const Modal = () => {
     return (
         <div className="modal-window">
-            <form onSubmit={handleSubmit}>
-                <input type="text" onChange={handleChange}/>
-            </form>
+            <SearchFormContainer />
+            <SearchListContainer />
         </div>
     );
 };

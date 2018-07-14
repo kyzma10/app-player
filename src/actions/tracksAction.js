@@ -5,17 +5,21 @@ import {
     TRACK_SHUFFLE,
     TRACK_PREV,
     TRACK_NEXT,
-    TRACK_CURRENT, FIND_TRACK_SUCCESS, FIND_TRACK_FAILURE
-} from '../types/tracksTypes';
-import {Urls} from "../utils/urls";
-import axios from "axios/index";
+    TRACK_CURRENT,
+    FIND_TRACK_SUCCESS,
+    FIND_TRACK_FAILURE,
+    TRACK_DELETE,
+    FIND_TRACK_ADDED,
+    CLEAR_SEARCH_LIST } from '../types/tracksTypes';
+import {startUrl, urls} from '../utils/urls';
+import axios from 'axios/index';
 
 
 const getPlayList = () => dispatch => {
     dispatch({type: FETCH_SONG_REQUEST});
     axios({
         method: 'get',
-        url: `${Urls}eminem`
+        url: startUrl
     })
         .then(response => dispatch({
             type: FETCH_SONG_SUCCESS,
@@ -54,10 +58,17 @@ const currentTrack = (id) => dispatch => {
     })
 };
 
+const deleteTrack = (id) => dispatch => {
+    dispatch({
+        type: TRACK_DELETE,
+        payload: id
+    })
+};
+
 const findTracks = (val) => dispatch => {
     axios({
         method: 'get',
-        url: `${Urls}${val}`
+        url: `${urls}${val}`
     })
         .then(response => dispatch({
             type: FIND_TRACK_SUCCESS,
@@ -69,11 +80,27 @@ const findTracks = (val) => dispatch => {
         }))
 };
 
+const findTrackAdded = (id) => dispatch => {
+    dispatch({
+        type: FIND_TRACK_ADDED,
+        payload: id
+    })
+};
+
+const clearSearchList = () => dispatch => {
+    dispatch({
+        type: CLEAR_SEARCH_LIST
+    })
+};
+
 export {
     getPlayList,
     prevTrack,
     nextTrack,
     shuffleTracks,
     currentTrack,
-    findTracks
+    findTracks,
+    deleteTrack,
+    findTrackAdded,
+    clearSearchList
 };

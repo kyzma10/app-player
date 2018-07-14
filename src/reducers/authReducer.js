@@ -1,8 +1,8 @@
-import {AUTH_FAILURE, AUTH_REQUEST, AUTH_SUCCESS} from "../types/authTypes";
+import {AUTH_FAILURE, AUTH_REQUEST, AUTH_SUCCESS} from '../types/authTypes';
 
 const initialState = {
     isLoading: false,
-    isAuthenticate: false,
+    isAuthenticated: false,
     error: null
 };
 
@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
         case AUTH_SUCCESS:
             return {
                 ...state,
-                isAuthenticate: action.payload
+                isAuthenticated: action.payload.data.token
             };
 
         case AUTH_FAILURE:

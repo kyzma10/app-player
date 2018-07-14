@@ -1,26 +1,27 @@
 @import '../../../styles/colors';
 
-.track-item {
+.search-item {
   position: relative;
   padding: 1rem 0;
-  border-bottom: 1px solid $text-color;
+  border-bottom: 1px solid $active-button;
   text-align: left;
-
-  &-active {
-    background-color: rgba($active-button, .3);
-  }
 
   &:hover {
     cursor: pointer;
   }
 
-  &:hover .track-delete {
+  &:hover .search-item-add {
     display: inline-block;
     position: absolute;
     right: .2rem;
   }
 }
 
-.track-delete {
+.search-item-add {
   display: none;
+}
+
+.search-warning {
+  font-weight: 700;
+  color: $color-warning;
 }

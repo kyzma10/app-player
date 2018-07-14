@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-const TrackList = ({elem, tracks, activeTrack, playTrack, isOpen, togglePopup, handleChange, handleSubmit}) => {
+const TrackList = ({elem, tracks, activeTrack, playTrack, isOpen, togglePopup,
+                       deleteTrack,}) => {
     return (
         <div className="track-head">
             <div className="track-button-control">
@@ -21,10 +22,7 @@ const TrackList = ({elem, tracks, activeTrack, playTrack, isOpen, togglePopup, h
                 : null }
             </h2>
             {isOpen
-                ? <Modal
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                />
+                ? <Modal />
                 : null}
             <ul className="track-list">
                 {tracks.map((track, idx) => <TrackItemContainer
@@ -33,6 +31,8 @@ const TrackList = ({elem, tracks, activeTrack, playTrack, isOpen, togglePopup, h
                     track={track}
                     playTrack={playTrack}
                     elem={elem}
+                    deleteTrack={deleteTrack}
+                    activeTrack={activeTrack}
                 />)}
             </ul>
         </div>

@@ -50,6 +50,10 @@
     outline: none; }
     .form-control input:hover {
       cursor: pointer; }
+    .form-control input:-webkit-autofill {
+      -webkit-box-shadow: inset 0 0 0 50px #2b282d !important;
+      -webkit-text-fill-color: #fff;
+      color: #fff !important; }
   .form-control svg {
     position: absolute;
     top: 50%;

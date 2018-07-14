@@ -1,10 +1,13 @@
 import axios from 'axios'
-import {AUTH_FAILURE, AUTH_REQUEST, AUTH_SUCCESS} from "../types/authTypes";
-import {authUrl} from "../utils/urls";
+import {
+    AUTH_FAILURE,
+    AUTH_REQUEST,
+    AUTH_SUCCESS } from '../types/authTypes';
+import {authUrl} from '../utils/urls';
 
 export const auth = (value) => dispatch => {
     dispatch({type: AUTH_REQUEST});
-    console.log('AUTH::::', value);
+
     axios({
         method: 'post',
         url: `${authUrl}/api/register`,

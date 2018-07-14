@@ -1,11 +1,10 @@
 import React from 'react';
 
-const CustomField = ({input, meta}) => {
-    console.log(meta.error);
+const CustomField = ({input, meta, ...rest}) => {
     return (
         <div>
-            <label htmlFor="email">Email: </label>
-            <input {...input} type="text" name="email"/>
+            <input {...input} {...rest}/>
+            <div>{meta.error && meta.touched ? meta.error : null}</div>
         </div>
     );
 };

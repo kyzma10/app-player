@@ -38,3 +38,23 @@ export function shuffle(mixArray) {
     }
     return newArray;
 }
+
+export function checkDuplicate(arr1, arr2) {
+    if (arr2.length === 0)
+        return false;
+
+    const checkElemId = arr2[0].id;
+    let elemId = null;
+
+    arr1.map(item => {
+        if(item.id === checkElemId) {
+            elemId = item.id
+        }
+        return elemId;
+    });
+
+    if(elemId === checkElemId)
+        return false;
+
+    return true;
+}

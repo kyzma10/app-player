@@ -1,6 +1,6 @@
 const routes = {
-    sign: '/',
-    tracks: '/tracks'
+    sign: '/sign',
+    tracks: '/'
 };
 
 export default routes;

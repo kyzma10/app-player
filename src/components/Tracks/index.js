@@ -17,8 +17,9 @@ const Tracks = ({
                     isActive,
                     isOpen,
                     togglePopup,
-                    handleChange,
-                    handleSubmit}) => {
+                    deleteTrack,
+                    clearSearch,
+                    endOfSong}) => {
     return (
         <div className="tracks">
             <TrackPanel
@@ -32,6 +33,7 @@ const Tracks = ({
                 pauseTrack={pauseTrack}
                 isActive={isActive}
                 playTrack={playTrack}
+                endOfSong={endOfSong}
             />
             <TrackList
                 elem={elem}
@@ -40,8 +42,8 @@ const Tracks = ({
                 playTrack={playTrack}
                 isOpen={isOpen}
                 togglePopup={togglePopup}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
+                deleteTrack={deleteTrack}
+                clearSearch={clearSearch}
             />
         </div>
     );

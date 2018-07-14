@@ -13,8 +13,8 @@ const TrackPanel = ({
                         shuffleTracks,
                         pauseTrack,
                         isActive,
-                        playTrack
-                    }) => {
+                        playTrack,
+                        endOfSong}) => {
     return (
         <div className="track-panel">
             <div className="current-image">
@@ -36,6 +36,7 @@ const TrackPanel = ({
                 shuffleTracks={shuffleTracks}
                 pauseTrack={pauseTrack}
                 isActive={isActive}
+                endOfSong={endOfSong}
             />
         </div>
     );

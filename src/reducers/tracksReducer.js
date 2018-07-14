@@ -7,12 +7,16 @@ import {
     TRACK_NEXT,
     TRACK_CURRENT,
     FIND_TRACK_SUCCESS,
-    FIND_TRACK_FAILURE } from '../types/tracksTypes';
-import {next, prev, shuffle} from '../utils/helperFunc';
+    FIND_TRACK_FAILURE,
+    TRACK_DELETE,
+    FIND_TRACK_ADDED,
+    CLEAR_SEARCH_LIST } from '../types/tracksTypes';
+import {checkDuplicate, next, prev, shuffle} from '../utils/helperFunc';
 
 const initialState = {
     trackList: [],
     activeTrack: [],
+    searchList: [],
     isLoading: null,
     error: null
 };
@@ -68,17 +72,48 @@ export default function trackReducer(state = initialState, action) {
                 activeTrack: state.trackList.filter(item => item.id === action.payload)
             };
 
+        case TRACK_DELETE:
+            return {
+                ...state,
+                trackList: state.trackList.filter(item => item.id !== action.payload)
+            };
+
         case FIND_TRACK_SUCCESS:
             return {
                 ...state,
-                trackList: action.payload.data.data,
-                activeTrack: [action.payload.data.data[0]]
+                searchList: action.payload.data.data
             };
 
         case FIND_TRACK_FAILURE:
             return {
                 ...state,
                 error: action.payload
+            };
+
+        case FIND_TRACK_ADDED:
+            const addedTrack = state.searchList.filter(item => item.id === action.payload);
+            if(checkDuplicate(state.trackList, addedTrack) === true) {
+                return {
+                    ...state,
+                    trackList: [...state.trackList, ...addedTrack],
+                    searchList: state.searchList.filter(item => item.id !== action.payload)
+                }
+            } else {
+                return {
+                    ...state,
+                    searchList: state.searchList.map(item => {
+                        if(item.id === action.payload)
+                            item = {...item, warning: 'This track exist in your playlist'};
+                        return item;
+                    })
+                }
+            }
+
+
+        case CLEAR_SEARCH_LIST:
+            return {
+                ...state,
+                searchList: []
             };
 
         default:

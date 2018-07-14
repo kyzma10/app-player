@@ -1,9 +1,9 @@
 import React from 'react';
 import TiLoop from 'react-icons/lib/ti/arrow-loop';
 
-const TracksLoop = ({id, elem, loop, isLoop}) => {
+const TracksLoop = ({isLoop, loopTracks}) => {
     return (
-            <TiLoop onClick={()=> loop(id, elem)} size={30} color={isLoop ? 'green' : ''}/>
+            <TiLoop onClick={loopTracks} size={30} color={isLoop ? '#b75c01' : ''}/>
     );
 };
 
