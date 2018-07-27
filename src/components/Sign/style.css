@@ -17,7 +17,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #211F2E;
-  color: #fff; }
+  color: #fff;
+  overflow: hidden; }
 
 .sign-img {
   clip-path: polygon(0 0, 65% 0, 98% 48%, 98% 52%, 45% 100%, 0 100%); }

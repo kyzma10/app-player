@@ -22,7 +22,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Switch>
                 <PrivateRoute exact path={routes.tracks} component={AppContainer}/>
-                <Route path={routes.sign} component={SignContainer} />
+                <Route path={routes.sign} component={SignContainer}/>
             </Switch>
         </BrowserRouter>
     </Provider>

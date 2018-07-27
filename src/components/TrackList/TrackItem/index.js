@@ -11,9 +11,13 @@ const TrackItem = ({elem, track, playTrack, idx, deleteTrack, activeTrack, check
             <span onClick={() => playTrack(track.id, elem)}>
                 {idx+1}. {track.artist.name}: {track.album.title}
             </span>
-            <span className="track-delete" onClick={() => deleteTrack(track.id)}>
-                <TiMinus size={24} />
-            </span>
+
+            {!checkOfItem(track.id, activeTrack[0].id) ?
+                <span className="track-delete" onClick={() => deleteTrack(track.id)}>
+                    <TiMinus size={24}/>
+                </span> :
+                null
+            }
         </li>
     );
 };
